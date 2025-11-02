@@ -25,7 +25,7 @@ jobs:
 
     - name: Build, Tag, and Push Docker Image
       run: |
-        IMAGE_URI=${{ secrets.REGISTRY_NAME }}/medplux:$GITHUB_RUN_NUMBER
+        IMAGE_URI=${{ secrets.REGISTRY_NAME }}/mediplus-kubernetes:$GITHUB_RUN_NUMBER
         docker build -t $IMAGE_URI .
         docker push $IMAGE_URI
 
@@ -44,7 +44,7 @@ jobs:
         cd kubernetes-manifest/medplux-yaml
         cat deployment.yaml
 
-        sed -i "s+696035274327.dkr.ecr.us-east-1.amazonaws.com/medplux:.*+696035274327.dkr.ecr.us-east-1.amazonaws.com/medplux:$GITHUB_RUN_NUMBER+g" deployment.yaml
+        sed -i "s+139605338147.dkr.ecr.us-east-1.amazonaws.com/mediplus:.*+139605338147.dkr.ecr.us-east-1.amazonaws.com/mediplus:$GITHUB_RUN_NUMBER+g" deployment.yaml
         cat deployment.yaml
         git config user.email support@digitalwitchng.online
         git config user.name ${GIT_USERNAME}
